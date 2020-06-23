@@ -1,3 +1,9 @@
+# temp pdf
+*.png
+*.jpg
+*.jpeg
+*.bmp
+
 # Logs
 logs
 *.log

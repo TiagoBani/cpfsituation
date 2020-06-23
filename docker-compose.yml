@@ -1,0 +1,19 @@
+# USE ONLY FOR DEVELOPMENT
+version: '3'
+services:
+  ms-recurrent:
+    # SET ENV'S
+    environment:
+      - NODE_ENV=development
+      - ENVIRONMENT=development
+    # NO CHANGES HERE REQUIRED
+    image: node:12.16-alpine3.11
+    container_name: cpfsituation
+    hostname: cpfsituation
+    tty: true
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm run dev
+    # command: chmod +x /app/docker-compose-entrypoint.sh
+    # entrypoint: /bin/sh /app/docker-compose-entrypoint.sh
