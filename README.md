@@ -33,9 +33,18 @@ npm run dev
 # example to use
 ```bash
 (async () => {
-    const config = require('./config.json')
-    const situation = require('cpfsituation')
+    const config = {
+        "url": "https://www.situacao-cadastral.com/",
+        "validate": [
+            "66533482882",
+        ],
+        "puppeteerConfig":{
+            "wait": { "waitUntil": "domcontentloaded" }
+        },
+        "save": true
+    }
 
+    const situation = require('cpfsituation')
     const results = await situation({ validate: config.validate });
     console.log(results)
 })();

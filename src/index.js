@@ -3,9 +3,6 @@ const puppeteer = require('puppeteer');
 const { filter } = require('./validates/string')
 const { checkParams } = require('./validates/params')
 
-// const { validate, url, puppeteerConfig, save } = require('../config.json');
-// const { wait } = puppeteerConfig 
-
 const andWait = async ( page, wait )=> {
   try{
     await page.waitForNavigation({ ...wait })
@@ -35,7 +32,7 @@ const btnBack = async (page, wait) => {
   await andWait(page, wait);
 }
 
-module.exports = async ({ validate, url, puppeteerConfig, save }) => {
+const cpfsituation = async ({ validate, url, puppeteerConfig, save }) => {
 
   checkParams({ validate, url, puppeteerConfig, save })
   
@@ -71,38 +68,4 @@ module.exports = async ({ validate, url, puppeteerConfig, save }) => {
   return results;
 }
 
-// module.exports = cpfSituation;
-
-// (async () => {
-//   const browser = await puppeteer.launch();
-//   const page = await browser.newPage();
-//   await page.goto(url, { ...wait });
-
-//   const results = []
-
-//   for (const param of validate) {
-//     await page.type('#doc', param)
-//     await page.click('#consultar'); 
-
-//     await andWait(page);
-
-//     const result = {};
-//     // Get results
-//     const name = await getName(page);
-//     const failed = await getFailed(page);  
-//     Object.assign(result, { name , failed })
-
-//     // Get unknow errors
-//     Object.assign(result, { failed: await (getUnkwonsErrors(failed)(name))(page) })
-
-//     results.push({...result})
-
-//     if(save) await page.screenshot({path: `${param}.png`});
-
-//     await btnBack(page)
-//   }
-
-//   console.log(results)
-
-//   await browser.close();
-// })();
+module.exports = cpfsituation;
