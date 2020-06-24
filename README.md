@@ -32,6 +32,9 @@ npm run dev
 
 # example to use
 ```bash
+npm i cpfsituation
+```
+```bash
 (async () => {
     const config = {
         "url": "https://www.situacao-cadastral.com/",
