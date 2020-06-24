@@ -1,13 +1,24 @@
 const puppeteer = require('puppeteer');
 
-const param = '72707318531';
-
 const { filter } = require('./validates/string')
+
+const { validate, url, puppeteerConfig, save } = require('../config.json');
+const { wait } = puppeteerConfig 
+
+const andWait = async page => {
+  try{
+    await page.waitForNavigation({ ...wait })
+  } catch( err ){
+    if(err.message.indexOf('Navigation timeout') > -1){
+      return console.log(`Error waitForNavigation: ${err.message}`)
+    } 
+    throw new Error(err.message)
+  }
+}
 
 const getName = async page => {
   const elementName = await page.$(".nome");
-  const name = elementName ? await (await elementName.getProperty('textContent')).jsonValue() : elementName;
-  return name
+  return elementName ? await (await elementName.getProperty('textContent')).jsonValue() : elementName;
 }
 
 const getFailed = async page => {
@@ -21,32 +32,41 @@ const getUnkwonsErrors = failed => name => async page => {
   return failed
 }
 
+const btnBack = async page => {
+  await page.click('#btnVoltar'); 
+  await andWait(page);
+}
+
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://www.situacao-cadastral.com/', { waitUntil: 'domcontentloaded' });
+  await page.goto(url, { ...wait });
 
-  // input cpf value
-  await page.type('#doc', param)
-  await page.click('#consultar'); 
+  const results = []
 
-  try{
-    await page.waitForNavigation({ waitUntil: 'domcontentloaded' })
-  } catch( err ){
-    console.log(`Error waitForNavigation: ${err.message}`)
+  for (const param of validate) {
+    await page.type('#doc', param)
+    await page.click('#consultar'); 
+
+    await andWait(page);
+
+    const result = {};
+    // Get results
+    const name = await getName(page);
+    const failed = await getFailed(page);  
+    Object.assign(result, { name , failed })
+
+    // Get unknow errors
+    Object.assign(result, { failed: await (getUnkwonsErrors(failed)(name))(page) })
+
+    results.push({...result})
+
+    if(save) await page.screenshot({path: `${param}.png`});
+
+    await btnBack(page)
   }
 
-  const result = {};
+  console.log(results)
 
-  const name = await getName(page);
-  const failed = await getFailed(page);  
-  Object.assign(result, { name , failed })
-
-  // Get unknow errors
-  Object.assign(result, { failed: await (getUnkwonsErrors(failed)(name))(page) })
-
-  console.log(`object:`, result)
-
-  await page.screenshot({path: `${param}.png`});
   await browser.close();
 })();

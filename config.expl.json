@@ -1,0 +1,12 @@
+{
+    "url": "https://www.situacao-cadastral.com/",
+    "validate": [
+        "66533482882",
+        "81556767145",
+        "53127731159"
+    ],
+    "puppeteerConfig":{
+        "wait": { "waitUntil": "domcontentloaded" }
+    },
+    "save": true
+}
