@@ -20,8 +20,9 @@ npm run dev
     "url": "https://www.situacao-cadastral.com/",
     "validate": [
         "66533482882",
-        "81556767145",
-        "53127731159"
+        "815.567.671-45",
+        "01.424.104/0001-96",
+        "86687884000110"
     ],
     "puppeteerConfig":{
         "wait": { "waitUntil": "domcontentloaded" }
@@ -32,22 +33,11 @@ npm run dev
 
 # example to use
 ```bash
-npm i cpfsituation
+npm i @tiagobani/cpfsituation
 ```
 ```bash
 (async () => {
-    const config = {
-        "url": "https://www.situacao-cadastral.com/",
-        "validate": [
-            "66533482882",
-        ],
-        "puppeteerConfig":{
-            "wait": { "waitUntil": "domcontentloaded" }
-        },
-        "save": true
-    }
-
-    const situation = require('cpfsituation')
+    const situation = require('@tiagobani/cpfsituation')
     const results = await situation({ validate: config.validate });
     console.log(results)
 })();

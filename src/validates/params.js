@@ -1,3 +1,11 @@
+const cpf = require("@fnando/cpf/commonjs");
+const cnpj = require("@fnando/cnpj/commonjs");
+
+const isCpfCnpjValid = param => {
+    if( cpf.isValid(param) || cnpj.isValid(param) ) return param
+    throw `Param ${param} is not cpf of cnpj invalid`
+}
+
 const isValid = param => {
     if(param.length > -1 ) return param
     throw 'Array is empty!'
@@ -22,7 +30,7 @@ const checkArrEmpty = fn => param => {
 }
 
 const validArr = param => {
-    return checkArrEmpty(isValid)(param)
+    return checkArrEmpty(isValid)(param).map(isCpfCnpjValid)
 }
 
 const validUrl = param => {

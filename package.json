@@ -1,22 +1,30 @@
 {
-  "name": "cpfsituation",
-  "version": "1.0.4",
+  "author": {
+    "name": "Tiago Bani",
+    "email": "tiago.bani@yahoo.com.br"
+  },
+  "name": "@tiagobani/cpfsituation",
+  "version": "1.0.0",
   "description": "validate and verify situation of cpf",
-  "main": "src/index.js",
+  "main": "index.js",
+  "homepage": "https://github.com/TiagoBani/cpfsituation/blob/master/README.md",
   "keywords": [
     "cpf",
-    "puppeteer"
+    "puppeteer",
+    "lazy evaluation"
   ],
   "scripts": {
     "prestart": "npm install --production",
-    "start": "node --unhandled-rejections=strict src/index.js",
+    "start": "node --unhandled-rejections=strict example.js",
     "predev": "npm install",
-    "dev": "nodemon --unhandled-rejections=strict src/index.js",
+    "dev": "nodemon --unhandled-rejections=strict example.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tiago Bani",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "@fnando/cnpj": "^1.0.1",
+    "@fnando/cpf": "^1.0.1",
+    "eslint": "^7.3.1",
     "puppeteer": "^4.0.0"
   },
   "devDependencies": {
