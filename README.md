@@ -1,21 +1,58 @@
-## cpfsituation
-Validation cpf situation
+# cpfsituation
 
-# commands production
-```bash
-npm run start 
+[![NPM package version](https://img.shields.io/npm/v/@tiagobani/cpfsituation.svg)](https://www.npmjs.com/package/@tiagobani/cpfsituation)
+![License: MIT](https://img.shields.io/npm/l/@tiagobani/cpfsituation.svg)
+
+This package does some
+[CPF](http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas) magic. It allows you to validate and consult titular of CPF documents.
+
+**HINT:** Not use in approach synchronous
+
+## Installation
+
+This lib is available as a NPM package. To install it, use the following
+command:
+
 ```
-```bash
-npm start 
+npm install @tiagobani/cpfsituation --save
 ```
 
-# commands development
-```bash
-npm run dev
+If you're using Yarn:
+
+```
+yarn add @tiagobani/cpfsituation
 ```
 
-# config params
-```bash
+## Usage
+
+```js
+// Node.js-specific
+(async () => {
+    const situation = require('@tiagobani/cpfsituation')
+    const results = await situation({ validate: [ '66533482882' ] }) 
+    // only return result
+    console.log(results)
+})();
+
+(async () => {
+    const situation = require('@tiagobani/cpfsituation')
+    const results = await situation({ validate: [ '66533482882' ], save: true }) 
+    // return result and create png to each request
+    console.log(results)
+})();
+```
+
+## Params
+| Param                  | Required      |  type            | 
+| ---------------------- | ------------- |  --------------- |
+| validate               | true          |  array           | 
+| url                    | false         |  string          |
+| save                   | false         |  boolean         |
+| puppeteerConfig        | false         |  object          |
+| puppeteerConfig.wait   | false         |  object          |
+
+### params example
+```js
 {
     "url": "https://www.situacao-cadastral.com/",
     "validate": [
@@ -31,14 +68,13 @@ npm run dev
 }
 ```
 
-# example to use
+## commands 
+### production
 ```bash
-npm i @tiagobani/cpfsituation
+npm run start 
 ```
+
+### development
 ```bash
-(async () => {
-    const situation = require('@tiagobani/cpfsituation')
-    const results = await situation({ validate: config.validate });
-    console.log(results)
-})();
+npm run dev
 ```
