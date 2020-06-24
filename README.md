@@ -14,5 +14,29 @@ npm start
 npm run dev
 ```
 
-# config
-rename config.expl.json to config.json
+# config params
+```bash
+{
+    "url": "https://www.situacao-cadastral.com/",
+    "validate": [
+        "66533482882",
+        "81556767145",
+        "53127731159"
+    ],
+    "puppeteerConfig":{
+        "wait": { "waitUntil": "domcontentloaded" }
+    },
+    "save": true
+}
+```
+
+# example to use
+```bash
+(async () => {
+    const config = require('./config.json')
+    const situation = require('cpfsituation')
+
+    const results = await situation({ validate: config.validate });
+    console.log(results)
+})();
+```
