@@ -18,7 +18,8 @@
     "start": "node --unhandled-rejections=strict example.js",
     "predev": "npm install",
     "dev": "nodemon --unhandled-rejections=strict example.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "npm publish --access=public"
   },
   "license": "MIT",
   "dependencies": {
