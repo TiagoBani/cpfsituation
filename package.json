@@ -1,7 +1,7 @@
 {
   "name": "cpfsituation",
-  "version": "1.0.3",
-  "description": "",
+  "version": "1.0.4",
+  "description": "validate and verify situation of cpf",
   "main": "src/index.js",
   "keywords": [
     "cpf",
