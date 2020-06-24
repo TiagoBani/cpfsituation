@@ -14,7 +14,7 @@
     "dev": "nodemon --unhandled-rejections=strict src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Tiago Bani",
   "license": "ISC",
   "dependencies": {
     "puppeteer": "^4.0.0"
