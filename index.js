@@ -1,1 +1,3 @@
-module.exports = require('./src/index')
+const cpfsituation = require('./src/index')
+
+module.exports = cpfsituation

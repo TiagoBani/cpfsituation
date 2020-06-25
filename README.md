@@ -27,16 +27,18 @@ yarn add @tiagobani/cpfsituation
 
 ```js
 // Node.js-specific
+const { cpfsituation } = require('@tiagobani/cpfsituation')
+
 (async () => {
-    const situation = require('@tiagobani/cpfsituation')
-    const results = await situation({ validate: [ '66533482882' ] }) 
+    const results = await cpfsituation({ validate: [ '66533482882' ] }) 
     // only return result
     console.log(results)
 })();
 
+const { cpfsituation } = require('@tiagobani/cpfsituation')
+
 (async () => {
-    const situation = require('@tiagobani/cpfsituation')
-    const results = await situation({ validate: [ '66533482882' ], save: true }) 
+    const results = await cpfsituation({ validate: [ '66533482882' ], save: true }) 
     // return result and create png to each request
     console.log(results)
 })();
