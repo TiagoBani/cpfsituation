@@ -33,39 +33,39 @@ const btnBack = async (page, wait) => {
   await andWait(page, wait)
 }
 
-const cpfsituation = async ({ validate, url, puppeteerConfig, save }) => {
-  checkParams({ validate, url, puppeteerConfig, save })
+module.exports = {
+  cpfsituation: async ({ validate, url, puppeteerConfig, save }) => {
+    checkParams({ validate, url, puppeteerConfig, save })
 
-  const wait = puppeteerConfig && puppeteerConfig.wait ? puppeteerConfig.wait : { waitUntil: 'domcontentloaded' }
+    const wait = puppeteerConfig && puppeteerConfig.wait ? puppeteerConfig.wait : { waitUntil: 'domcontentloaded' }
 
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
-  await page.goto(url || 'https://www.situacao-cadastral.com/', { ...wait })
+    const browser = await puppeteer.launch()
+    const page = await browser.newPage()
+    await page.goto(url || 'https://www.situacao-cadastral.com/', { ...wait })
 
-  const results = []
-  for (const param of validate) {
-    await page.type('#doc', param)
-    await page.click('#consultar')
+    const results = []
+    for (const param of validate) {
+      await page.type('#doc', param)
+      await page.click('#consultar')
 
-    await andWait(page, wait)
+      await andWait(page, wait)
 
-    const result = {}
-    // Get results
-    const name = await getName(page)
-    const failed = await getFailed(page)
-    Object.assign(result, { name, failed })
-    // Get unknow errors
-    Object.assign(result, { failed: await (getUnkwonsErrors(failed)(name))(page) })
+      const result = {}
+      // Get results
+      const name = await getName(page)
+      const failed = await getFailed(page)
+      Object.assign(result, { name, failed })
+      // Get unknow errors
+      Object.assign(result, { failed: await (getUnkwonsErrors(failed)(name))(page) })
 
-    results.push({ ...result })
+      results.push({ ...result })
 
-    if (save) await page.screenshot({ path: `${isCpfCnpjValid(param)}.png` })
+      if (save) await page.screenshot({ path: `${isCpfCnpjValid(param)}.png` })
 
-    await btnBack(page, wait)
+      await btnBack(page, wait)
+    }
+
+    await browser.close()
+    return results
   }
-
-  await browser.close()
-  return results
 }
-
-module.exports = cpfsituation
