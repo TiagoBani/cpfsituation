@@ -25,3 +25,7 @@ Resolve conflict version
 ## 2.0.4 (2020-06-24)
 
 Resolve conflict version
+
+## 2.0.6 (2020-06-25)
+
+Resolve require only async function
