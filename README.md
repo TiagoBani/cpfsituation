@@ -4,7 +4,8 @@
 ![License: MIT](https://img.shields.io/npm/l/@tiagobani/cpfsituation.svg)
 
 This package does some
-[CPF](http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas) magic. It allows you to validate and consult titular of CPF documents.
+[CPF](http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas) and 
+[CNPJ](https://pt.wikipedia.org/wiki/Cadastro_Nacional_da_Pessoa_Jur%C3%ADdica) magic. It allows you to validate and consult holder of CPF documents or validate and consult name of CNPJ documents.
 
 **HINT:** Not use in approach synchronous
 
