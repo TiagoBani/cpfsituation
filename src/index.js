@@ -37,14 +37,14 @@ module.exports = {
   cpfsituation: async ({ validate, url, puppeteerConfig, save }) => {
     checkParams({ validate, url, puppeteerConfig, save })
 
-    const wait = puppeteerConfig && puppeteerConfig.wait ? puppeteerConfig.wait : { waitUntil: 'domcontentloaded' }
+    const wait = puppeteerConfig && puppeteerConfig.wait ? puppeteerConfig.wait : { waitUntil: 'domcontentloaded', timeout: 5000 }
 
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto(url || 'https://www.situacao-cadastral.com/', { ...wait })
 
     const results = []
-    for (const param of validate) {
+    for (const [key, param] of validate.entries()) {
       await page.type('#doc', param)
       await page.click('#consultar')
 
@@ -62,7 +62,8 @@ module.exports = {
 
       if (save) await page.screenshot({ path: `${isCpfCnpjValid(param)}.png` })
 
-      await btnBack(page, wait)
+      // Prevents reload in last page
+      if (validate.length !== key) await btnBack(page, wait)
     }
 
     await browser.close()

@@ -6,7 +6,10 @@
         "53127731159"
     ],
     "puppeteerConfig":{
-        "wait": { "waitUntil": "domcontentloaded" }
+        "wait": { 
+            "waitUntil": "domcontentloaded", 
+            "timeout": 5000 
+        }
     },
     "save": true
 }

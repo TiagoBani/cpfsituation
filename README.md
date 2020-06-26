@@ -65,7 +65,7 @@ const { cpfsituation } = require('@tiagobani/cpfsituation')
         "86687884000110"
     ],
     "puppeteerConfig":{
-        "wait": { "waitUntil": "domcontentloaded" }
+        "wait": { "waitUntil": "domcontentloaded", "timeout": 5000 }
     },
     "save": true
 }
