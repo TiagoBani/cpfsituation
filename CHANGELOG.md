@@ -29,3 +29,7 @@ Resolve conflict version
 ## 2.0.6 (2020-06-25)
 
 Resolve require only async function
+
+## 2.0.7 (2020-06-25)
+
+Add timeout in loadContent
