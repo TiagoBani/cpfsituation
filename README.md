@@ -81,3 +81,6 @@ npm run start
 ```bash
 npm run dev
 ```
+
+Contributing
+See contributing [guidelines](https://github.com/TiagoBani/cpfsituation/blob/master/CONTRIBUTING.md)
