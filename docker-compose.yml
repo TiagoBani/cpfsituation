@@ -1,7 +1,7 @@
 # USE ONLY FOR DEVELOPMENT
 version: '3'
 services:
-  ms-recurrent:
+  cpfsituation:
     # SET ENV'S
     environment:
       - NODE_ENV=development
